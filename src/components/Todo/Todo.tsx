@@ -3,6 +3,7 @@ import type { Todo } from "types";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Stack from "@mui/material/Stack";
 import { useAppDispatch } from "hooks";
 import { todosSlice } from "store/slices/todosSlice";
 
@@ -24,6 +25,11 @@ const Todo: FC<TodoProps> = ({ infoTodo }) => {
     dispatch(todosSlice.actions.deleteTodo(id));
   };
 
+  const handleEditTask = () => {
+    dispatch(todosSlice.actions.setIdEditedTask(id));
+    dispatch(todosSlice.actions.changeStatusEditModalForm());
+  };
+
   return (
     <WrapperTodo>
       <Button onClick={handleStatusChange}>
@@ -31,13 +37,19 @@ const Todo: FC<TodoProps> = ({ infoTodo }) => {
         <span>{title}</span>
       </Button>
 
-      <Button
-        variant="outlined"
-        startIcon={<DeleteIcon />}
-        onClick={handleDeleteTodo}
-      >
-        Delete
-      </Button>
+      <Stack direction="row" spacing="10px">
+        <Button variant="outlined" onClick={handleEditTask}>
+          Edit
+        </Button>
+
+        <Button
+          variant="outlined"
+          startIcon={<DeleteIcon />}
+          onClick={handleDeleteTodo}
+        >
+          Delete
+        </Button>
+      </Stack>
     </WrapperTodo>
   );
 };
