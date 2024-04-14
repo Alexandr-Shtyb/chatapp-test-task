@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import type { Todo, TodoFilters } from "types";
 
-export const useSelectedFilter = (todos: Todo[], filter: TodoFilters) => {
+export const useSelectedFilter = (
+  todos: Todo[],
+  filter: TodoFilters,
+): Todo[] => {
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>(todos);
 
   useEffect(() => {
