@@ -6,7 +6,11 @@ import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Todo from "components/Todo/Todo";
 import { useAppSelector, useAppDispatch } from "hooks";
-import { todosSlice } from "store/slices/todosSlice";
+import {
+  onDragEnd,
+  setFilterTodo,
+  changeStatusModalForm,
+} from "store/slices/todosSlice";
 import ModalForm from "components/ModalForm/ModalForm";
 import EditModalForm from "components/EditModalForm/EditModalForm";
 import { SELECT_FILTERS_TODO } from "constants/todos";
@@ -23,26 +27,29 @@ import { ButtonAddTask, NoTasksPanel } from "./styles";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const todos = useAppSelector(state => state.todos.todos);
-  const filter = useAppSelector(state => state.todos.currentFilter);
-  const [valueFilterTodos, setValueFilterTodos] = useState<TodoFilters>(filter);
+
+  const { todos, currentFilter } = useAppSelector(state => state.todos);
+
+  const [valueFilterTodos, setValueFilterTodos] =
+    useState<TodoFilters>(currentFilter);
+
   const filteredTodos = useSelectedFilter(todos, valueFilterTodos);
 
+  const isFilteredTasks = filteredTodos.length > 0;
+
   const handleAddTask = () => {
-    dispatch(todosSlice.actions.changeStatusModalForm());
+    dispatch(changeStatusModalForm());
   };
 
   const handleSelectFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFilter = e.target.value as TodoFilters;
     setValueFilterTodos(selectedFilter);
-    dispatch(todosSlice.actions.setFilterTodo(selectedFilter));
+    dispatch(setFilterTodo(selectedFilter));
   };
 
   const handleOnDragEnd = (result: DropResult) => {
-    dispatch(todosSlice.actions.onDragEnd(result));
+    dispatch(onDragEnd(result));
   };
-
-  const isFilteredTasks = filteredTodos.length > 0;
 
   return (
     <Container>

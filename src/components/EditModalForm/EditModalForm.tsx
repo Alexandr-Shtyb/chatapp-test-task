@@ -7,29 +7,31 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useAppSelector, useAppDispatch } from "hooks";
-import { todosSlice } from "store/slices/todosSlice";
+import { changeStatusEditModalForm, editTask } from "store/slices/todosSlice";
 
 const EditModalForm = () => {
   const dispatch = useAppDispatch();
-  const isOpenEditModalForm = useAppSelector(
-    state => state.todos.isOpenEditModalForm,
+
+  const { isOpenEditModalForm, idEditedTask } = useAppSelector(
+    state => state.todos,
   );
-  const idEditedTask = useAppSelector(state => state.todos.idEditedTask);
+
   const [titleTask, setTitleTask] = useState("");
 
   const handleCloseEditModalForm = () => {
-    dispatch(todosSlice.actions.changeStatusEditModalForm());
+    dispatch(changeStatusEditModalForm());
   };
 
   const handleEditTask = () => {
-    dispatch(
-      todosSlice.actions.editTask({ id: idEditedTask, title: titleTask }),
-    );
+    dispatch(editTask({ id: idEditedTask, title: titleTask }));
     setTitleTask("");
   };
 
-  const handleTextField = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitleTask(e.target.value);
+  const handleChangeTaskTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      currentTarget: { value },
+    } = e;
+    setTitleTask(value);
   };
 
   return (
@@ -61,9 +63,7 @@ const EditModalForm = () => {
           fullWidth
           variant="standard"
           value={titleTask}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleTextField(e)
-          }
+          onChange={handleChangeTaskTitle}
         />
       </DialogContent>
       <DialogActions>

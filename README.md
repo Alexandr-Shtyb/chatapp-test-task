@@ -1,30 +1,40 @@
-# React + TypeScript + Vite
+## О проекте
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Задание: Разработка Todo List с использованием React и Redux Toolkit
 
-Currently, two official plugins are available:
+Цель этого задания - создать простое веб-приложение для управления списком задач (Todo List) с использованием React и Redux Toolkit. Ниже
+приведены основные требования к приложению:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Интерфейс пользователя:
+- Должен быть отображен список задач.
+- Пользователь должен иметь возможность добавлять новые задачи.
+- Пользователь должен иметь возможность отмечать задачи как выполненные.
+- Пользователь должен иметь возможность удалять задачи.
 
-## Expanding the ESLint configuration
+Реализация:
+- Используйте React для создания пользовательского интерфейса.
+- Для управления состоянием используйте Redux Toolkit.
+- Создайте необходимые actions, reducers и store для работы с задачами.
+- Для стилизации компонентов вы можете использовать любой подход на ваш выбор (например, CSS, Styled Components и т. д.).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Дополнительные требования (опционально):
+- Добавьте возможность редактирования задач.
+- Добавьте возможность фильтрации задач по статусу (выполненные / невыполненные).
+- Используйте TypeScript для статической типизации приложения.
+- Реализуйте функционал перетаскивания задач для изменения их порядка в списке.
+- Добавьте возможность сохранения задач в локальное хранилище браузера для сохранения данных между сеансами.
 
-- Configure the top-level `parserOptions` property like this:
+Примечание: Пожалуйста, следуйте указанным требованиям и инструкциям для успешного выполнения задания.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Используемые технологии
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Typescript
+- React
+- React-router-dom v6
+- Redux Toolkit
+- MUI
+- Emotion
+
+## Запуск
+
+Запустить проект можно командой `npm run dev`, предварительно необходимо скачать зависимости командой `npm install`

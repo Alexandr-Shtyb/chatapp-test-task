@@ -5,7 +5,12 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Stack from "@mui/material/Stack";
 import { useAppDispatch } from "hooks";
-import { todosSlice } from "store/slices/todosSlice";
+import {
+  setStatus,
+  deleteTodo,
+  setIdEditedTask,
+  changeStatusEditModalForm,
+} from "store/slices/todosSlice";
 
 import { WrapperTodo } from "./styles";
 
@@ -15,19 +20,20 @@ interface TodoProps {
 
 const Todo: FC<TodoProps> = ({ infoTodo }) => {
   const dispatch = useAppDispatch();
+
   const { id, title, status } = infoTodo;
 
   const handleStatusChange = () => {
-    dispatch(todosSlice.actions.setStatus(id));
+    dispatch(setStatus(id));
   };
 
   const handleDeleteTodo = () => {
-    dispatch(todosSlice.actions.deleteTodo(id));
+    dispatch(deleteTodo(id));
   };
 
   const handleEditTask = () => {
-    dispatch(todosSlice.actions.setIdEditedTask(id));
-    dispatch(todosSlice.actions.changeStatusEditModalForm());
+    dispatch(setIdEditedTask(id));
+    dispatch(changeStatusEditModalForm());
   };
 
   return (

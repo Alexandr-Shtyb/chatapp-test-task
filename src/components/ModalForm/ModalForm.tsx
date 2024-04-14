@@ -7,24 +7,29 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useAppSelector, useAppDispatch } from "hooks";
-import { todosSlice } from "store/slices/todosSlice";
+import { changeStatusModalForm, addTask } from "store/slices/todosSlice";
 
 const ModalForm = () => {
   const dispatch = useAppDispatch();
-  const isOpenModalForm = useAppSelector(state => state.todos.isOpenModalForm);
+
+  const { isOpenModalForm } = useAppSelector(state => state.todos);
+
   const [titleTask, setTitleTask] = useState("");
 
   const handleCloseModalForm = () => {
-    dispatch(todosSlice.actions.changeStatusModalForm());
+    dispatch(changeStatusModalForm());
   };
 
   const handleAddingTask = () => {
-    dispatch(todosSlice.actions.addTask(titleTask));
+    dispatch(addTask(titleTask));
     setTitleTask("");
   };
 
-  const handleTextField = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitleTask(e.target.value);
+  const handleAddTaskTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      currentTarget: { value },
+    } = e;
+    setTitleTask(value);
   };
 
   return (
@@ -56,9 +61,7 @@ const ModalForm = () => {
           fullWidth
           variant="standard"
           value={titleTask}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            handleTextField(e)
-          }
+          onChange={handleAddTaskTitle}
         />
       </DialogContent>
       <DialogActions>

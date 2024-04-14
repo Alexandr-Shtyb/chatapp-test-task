@@ -76,6 +76,7 @@ export const todosSlice = createSlice({
     },
     onDragEnd(state, action: PayloadAction<DropResult>) {
       const result = action.payload;
+
       if (!result.destination) return;
 
       const [reorderItem] = state.todos.splice(result.source.index, 1);
@@ -84,3 +85,15 @@ export const todosSlice = createSlice({
     },
   },
 });
+
+export const {
+  setStatus,
+  deleteTodo,
+  addTask,
+  editTask,
+  changeStatusModalForm,
+  changeStatusEditModalForm,
+  setIdEditedTask,
+  setFilterTodo,
+  onDragEnd,
+} = todosSlice.actions;
