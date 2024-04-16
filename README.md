@@ -34,6 +34,7 @@
 - Redux Toolkit
 - MUI
 - Emotion
+- Jest, React Testing Library
 
 ## Запуск
 
