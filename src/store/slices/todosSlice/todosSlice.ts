@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import type { Todo, TodoFilters } from "types";
 import type { DropResult } from "react-beautiful-dnd";
 
-interface TodosState {
+export interface TodosState {
   todos: Todo[];
   isOpenModalForm: boolean;
   isOpenEditModalForm: boolean;
